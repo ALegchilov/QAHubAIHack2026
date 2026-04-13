@@ -1,0 +1,9 @@
+{
+  "agent": "orchestrator",
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true
+  }
+}
