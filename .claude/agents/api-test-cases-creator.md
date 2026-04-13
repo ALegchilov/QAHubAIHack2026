@@ -80,20 +80,21 @@ When generating API test cases for the InvenTree Parts module, cover these areas
 
 ### 1. CRUD Operations on Parts (`/api/part/`, `/api/part/{id}/`)
 
-- **Create (POST):** Minimum required fields, all fields populated, with `initial_stock`, with `initial_supplier`, with `duplicate` (copy from another part), with `copy_category_parameters`
-- **Read (GET):** Single part retrieval, verify all fields returned including readOnly computed fields, verify `category_detail` expansion
-- **Update (PUT):** Full replacement update with all fields
-- **Update (PATCH):** Partial update of individual fields (name, description, category, each boolean flag, etc.)
-- **Delete (DELETE):** Delete a part, verify 204 response, verify subsequent GET returns 404
-- **Bulk operations:** PUT/PATCH on `/api/part/` for bulk updates
+Each operation gets its own output file (`ATC-parts-create.md`, `ATC-parts-read.md`, `ATC-parts-update.md`, `ATC-parts-delete.md`):
+
+- **Create → `ATC-parts-create.md`:** Minimum required fields, all fields populated, with `initial_stock`, with `initial_supplier`, with `duplicate` (copy from another part), with `copy_category_parameters`
+- **Read → `ATC-parts-read.md`:** List all parts, single part retrieval, verify all fields returned including readOnly computed fields, verify `category_detail` expansion
+- **Update → `ATC-parts-update.md`:** Full replacement update (PUT) with all fields, partial update (PATCH) of individual fields (name, description, category, each boolean flag, etc.), bulk operations (PUT/PATCH on `/api/part/` for bulk updates)
+- **Delete → `ATC-parts-delete.md`:** Delete a part, verify 204 response, verify subsequent GET returns 404, delete with dependencies
 
 ### 2. CRUD Operations on Part Categories (`/api/part/category/`, `/api/part/category/{id}/`)
 
-- **Create (POST):** With name only, with all fields, with parent (nested category), structural category
-- **Read (GET):** Single category, category tree endpoint (`/api/part/category/tree/`), verify hierarchy fields
-- **Update (PUT/PATCH):** Rename, change parent (re-parent a category), toggle structural flag
-- **Delete (DELETE):** Empty category, category with parts, category with subcategories
-- **Hierarchy:** Multi-level creation, verify `pathstring`, `level`, `subcategories` count
+Each operation gets its own output file (`ATC-categories-create.md`, `ATC-categories-read.md`, `ATC-categories-update.md`, `ATC-categories-delete.md`):
+
+- **Create → `ATC-categories-create.md`:** With name only, with all fields, with parent (nested category), structural category
+- **Read → `ATC-categories-read.md`:** Single category, list categories, category tree endpoint (`/api/part/category/tree/`), verify hierarchy fields (`pathstring`, `level`, `subcategories` count)
+- **Update → `ATC-categories-update.md`:** Rename, change parent (re-parent a category), toggle structural flag
+- **Delete → `ATC-categories-delete.md`:** Empty category, category with parts, category with subcategories
 
 ### 3. Filtering, Pagination, and Search on Parts List
 
@@ -226,10 +227,23 @@ Each file must begin with a header block and a summary index:
 
 ## Output File Structure
 
+Split test cases into **separate files per CRUD operation** for each resource, plus dedicated files for cross-cutting concerns. This keeps files focused and easier to maintain/review.
+
 ```
 output/api-tests/
-  ATC-parts-crud.md           -- Parts CRUD operations (Create, Read, Update, Delete, Bulk)
-  ATC-categories-crud.md      -- Part Categories CRUD (hierarchy, structural, tree)
+  # Parts — one file per CRUD operation
+  ATC-parts-create.md         -- Parts: Create (POST /api/part/) — required fields, all fields, initial_stock, duplicate, copy params
+  ATC-parts-read.md           -- Parts: Read (GET /api/part/, GET /api/part/{id}/) — list, detail, computed fields, expansions
+  ATC-parts-update.md         -- Parts: Update (PUT /api/part/{id}/, PATCH /api/part/{id}/) — full replace, partial update, bulk
+  ATC-parts-delete.md         -- Parts: Delete (DELETE /api/part/{id}/) — simple delete, delete with dependencies
+
+  # Part Categories — one file per CRUD operation
+  ATC-categories-create.md    -- Categories: Create (POST /api/part/category/) — name only, all fields, nested, structural
+  ATC-categories-read.md      -- Categories: Read (GET /api/part/category/, GET /api/part/category/{id}/, tree) — list, detail, hierarchy
+  ATC-categories-update.md    -- Categories: Update (PUT/PATCH /api/part/category/{id}/) — rename, re-parent, toggle structural
+  ATC-categories-delete.md    -- Categories: Delete (DELETE /api/part/category/{id}/) — empty, with parts, with subcategories
+
+  # Cross-cutting concerns
   ATC-parts-filtering.md      -- Filtering, pagination, search, ordering on Parts list
   ATC-field-validation.md     -- Field-level validation (required, maxLength, types, readOnly, formats)
   ATC-relational-integrity.md -- Relational integrity (FKs, structural categories, cascade, BOM)
