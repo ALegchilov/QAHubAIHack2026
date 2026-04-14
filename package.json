@@ -1,0 +1,17 @@
+{
+  "name": "inventree-api-tests",
+  "version": "1.0.0",
+  "description": "Playwright API test automation for InvenTree Parts module",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:api": "npx playwright test --project=api-tests",
+    "test:api:parts": "npx playwright test tests/api/parts/",
+    "test:api:categories": "npx playwright test tests/api/categories/",
+    "test:api:cross-cutting": "npx playwright test tests/api/cross-cutting/",
+    "test:report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^25.6.0"
+  }
+}
