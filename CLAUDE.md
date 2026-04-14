@@ -19,7 +19,7 @@ orchestrator (entry point — set as default agent in settings.json)
 └── playwright-healer       — Diagnoses and fixes failing Playwright tests
 ```
 
-Test automation (converting test cases → executable Playwright specs) is handled automatically by a **PostToolUse hook** (`.claude/hooks/on-test-case-written.sh`). When a test case file (`output/TC-*.md` or `output/api-tests/ATC-*.md`) is written or edited, the hook triggers the orchestrator to generate/update the corresponding Playwright spec, run it, and heal any failures via the `playwright-healer` agent.
+Test automation (converting test cases → executable Playwright specs) is handled automatically by a **PostToolUse hook** (`.claude/hooks/on-test-case-written.sh`). When a test case file (`test-cases/TC-*.md` or `test-cases/api-tests/ATC-*.md`) is written or edited, the hook triggers the orchestrator to generate/update the corresponding Playwright spec, run it, and heal any failures via the `playwright-healer` agent.
 
 **Orchestrator workflow:** Receive request → classify → delegate test case creation to sub-agents (in parallel when independent) → hook auto-implements specs → run tests → heal failures → present unified summary.
 
@@ -79,7 +79,7 @@ npm install -g @playwright/cli@latest
 npx playwright test
 
 # Run a single test file
-npx playwright test tests/parts/part-creation.spec.ts
+npx playwright test automation/api/parts/parts-create.spec.ts
 
 # Run tests with CLI debugging
 npx playwright test --debug=cli

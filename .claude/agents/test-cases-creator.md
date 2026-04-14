@@ -66,11 +66,11 @@ playwright-cli snapshot
 
 ### Phase 2 — Test Case Generation
 
-After collecting knowledge from all pages, generate test cases and write them to the `output/` folder.
+After collecting knowledge from all pages, generate test cases and write them to the `test-cases/` folder.
 
 **Create one `.md` file per functional area** as defined in the context file. Add additional files if the research uncovers areas not anticipated by the context.
 
-If the `output/` directory does not exist, create it.
+If the `test-cases/` directory does not exist, create it.
 
 ### Phase 3 — Summary
 

@@ -22,13 +22,13 @@ Test automation (converting test cases into executable Playwright specs) is hand
 
 ## Hook: Auto-Implement on Test Case Change
 
-A `PostToolUse` hook (`.claude/hooks/on-test-case-written.sh`) fires after any `Write` or `Edit` to files matching `output/api-tests/ATC-*.md` or `output/TC-*.md`. When the hook output contains `Action: auto-implement`, you MUST:
+A `PostToolUse` hook (`.claude/hooks/on-test-case-written.sh`) fires after any `Write` or `Edit` to files matching `test-cases/api-tests/ATC-*.md` or `test-cases/TC-*.md`. When the hook output contains `Action: auto-implement`, you MUST:
 
 1. **Read the updated test case file** at the path shown in the hook output.
 2. **Determine the spec file path** from the hook output (`Corresponding spec:` line).
 3. **Read the existing spec** (if it exists) to understand what's already automated.
 4. **Create or update the Playwright spec** to match the test cases in the markdown file:
-   - For API tests (`Type: api`): Use fixtures from `tests/api/fixtures/api-fixtures.ts` and helpers from `tests/api/helpers/`. Follow patterns in existing specs like `tests/api/parts/parts-create.spec.ts`.
+   - For API tests (`Type: api`): Use fixtures from `automation/api/fixtures/api-fixtures.ts` and helpers from `automation/api/helpers/`. Follow patterns in existing specs like `automation/api/parts/parts-create.spec.ts`.
    - For UI tests (`Type: ui`): Use Playwright browser tests with the `playwright-cli` skill.
    - Ensure all test names use unique data (via `uid()` or `Date.now()`) to avoid collisions with demo data.
    - Use `getResults()`/`getCount()` helpers for API responses that may be flat arrays or paginated.
@@ -70,13 +70,13 @@ Stage 1: UI Test Cases          Stage 2: API Test Cases
 (test-cases-creator)            (api-test-cases-creator)
         |                               |
         v                               v
-   output/TC-*.md               output/api-tests/ATC-*.md
+   test-cases/TC-*.md           test-cases/api-tests/ATC-*.md
         |                               |
         v                               v
    [Hook: auto-implement]       [Hook: auto-implement]
         |                               |
         v                               v
-   tests/ui/*.spec.ts           tests/api/*.spec.ts
+   automation/ui/*.spec.ts      automation/api/*.spec.ts
         |                               |
         v                               v
    [Run & heal]                 [Run & heal]
@@ -91,11 +91,11 @@ Stage 1: UI Test Cases          Stage 2: API Test Cases
 **Delegation prompt must include:**
 - Which context file to read
 - Target application URL and credentials
-- Reminder to output files to `output/` following the structure defined in the context file
+- Reminder to output files to `test-cases/` following the structure defined in the context file
 
-**Output:** `output/TC-*.md` files — one per functional area.
+**Output:** `test-cases/TC-*.md` files — one per functional area.
 
-**Completion gate:** Verify the `output/` directory contains the expected `.md` files before proceeding.
+**Completion gate:** Verify the `test-cases/` directory contains the expected `.md` files before proceeding.
 
 #### Stage 2 — Generate API Test Cases (`api-test-cases-creator`)
 
@@ -109,9 +109,9 @@ Stage 1: UI Test Cases          Stage 2: API Test Cases
 - Credentials for all test accounts (allaccess, reader, engineer, admin)
 - Required coverage areas (CRUD, filtering, validation, relational integrity, edge cases)
 
-**Output:** `output/api-tests/ATC-*.md` files — one per coverage area.
+**Output:** `test-cases/api-tests/ATC-*.md` files — one per coverage area.
 
-**Completion gate:** Verify `output/api-tests/` contains the expected `.md` files before proceeding.
+**Completion gate:** Verify `test-cases/api-tests/` contains the expected `.md` files before proceeding.
 
 #### Auto-Implementation (Hook-Driven)
 
@@ -192,4 +192,4 @@ The target InvenTree demo instance details (URL, login credentials, data persist
 - Track progress across all delegated tasks and report status to the user.
 - If a sub-agent fails or produces incomplete results, investigate the output, diagnose the issue, and either retry with adjusted instructions or escalate to the user.
 - If the user asks to run only part of the pipeline (e.g., "just API test cases"), respect that and skip the remaining stages.
-- If test case files already exist in `output/`, ask the user whether to regenerate them or use the existing files.
+- If test case files already exist in `test-cases/`, ask the user whether to regenerate them or use the existing files.

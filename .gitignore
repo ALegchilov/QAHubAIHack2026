@@ -1,3 +1,6 @@
 .playwright-cli/
 node_modules/
 playwright-report/
+test-results/
+.auth/
+.DS_Store
