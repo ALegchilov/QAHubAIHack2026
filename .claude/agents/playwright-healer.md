@@ -33,7 +33,7 @@ You are a specialized agent that **diagnoses and fixes failing Playwright tests*
 
 ```
 playwright.config.ts                 — Playwright config (API-only, no browser)
-tests/api/
+automation/api/
   fixtures/api-fixtures.ts           — Extended test fixtures (api, readerApi, createdPartPks, etc.)
   helpers/
     config.ts                        — CONFIG object with base URL, accounts

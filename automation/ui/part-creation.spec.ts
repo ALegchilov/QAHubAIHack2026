@@ -1,7 +1,7 @@
 /**
  * Part Creation — UI Tests
  *
- * Source: output/TC-part-creation.md
+ * Source: test-cases/TC-part-creation.md
  * Covers: TC-CREATE-001 through TC-CREATE-019
  * Target: https://demo.inventree.org/web/
  *

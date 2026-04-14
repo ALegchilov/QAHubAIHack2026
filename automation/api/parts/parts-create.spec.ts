@@ -1,7 +1,7 @@
 /**
  * Parts: Create — API Tests
  *
- * Source: output/api-tests/ATC-parts-create.md
+ * Source: test-cases/api-tests/ATC-parts-create.md
  * Covers: ATC-CREATE-001 through ATC-CREATE-020
  * Endpoint: POST /api/part/
  */

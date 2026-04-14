@@ -75,10 +75,11 @@ This means **writing a test case automatically produces a working automated test
 ├── context/                     # Test scope & app config
 │   ├── inventree-demo.md        # Target app credentials
 │   └── parts-test-scope.md      # What to test
-├── output/                      # Generated test cases (markdown)
+├── test-cases/                  # Manual test cases (markdown)
 │   ├── TC-*.md                  # UI test cases
 │   └── api-tests/ATC-*.md      # API test cases
-├── tests/                       # Generated Playwright specs
+├── automation/                  # Playwright automation specs
+│   ├── ui/                      # UI test specs & fixtures
 │   └── api/
 │       ├── fixtures/            # Shared test fixtures
 │       ├── helpers/             # Auth, API client, test data utils

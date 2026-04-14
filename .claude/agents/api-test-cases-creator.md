@@ -60,7 +60,7 @@ Then parse it with Python to extract the endpoint definitions, schemas, paramete
 
 ### Phase 2 — Test Case Generation
 
-After analyzing the spec, generate test cases and write them to the `output/api-tests/` folder.
+After analyzing the spec, generate test cases and write them to the `test-cases/api-tests/` folder.
 
 **Create one `.md` file per functional area** as defined by the orchestrator or the coverage requirements below. Add additional files if the spec analysis reveals areas not anticipated.
 
@@ -230,7 +230,7 @@ Each file must begin with a header block and a summary index:
 Split test cases into **separate files per CRUD operation** for each resource, plus dedicated files for cross-cutting concerns. This keeps files focused and easier to maintain/review.
 
 ```
-output/api-tests/
+test-cases/api-tests/
   # Parts — one file per CRUD operation
   ATC-parts-create.md         -- Parts: Create (POST /api/part/) — required fields, all fields, initial_stock, duplicate, copy params
   ATC-parts-read.md           -- Parts: Read (GET /api/part/, GET /api/part/{id}/) — list, detail, computed fields, expansions

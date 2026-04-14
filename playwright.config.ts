@@ -7,7 +7,7 @@ import { defineConfig } from '@playwright/test';
  * to make HTTP calls directly against the InvenTree REST API.
  */
 export default defineConfig({
-  testDir: './tests/api',
+  testDir: './automation/api',
   testMatch: '**/*.spec.ts',
 
   /* Fail the build on CI if test.only is left in source */

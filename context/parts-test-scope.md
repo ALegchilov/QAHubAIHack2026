@@ -102,10 +102,10 @@ Each of these attributes must have dedicated test cases exploring their behavior
 
 ## Output File Structure
 
-Create one `.md` file per functional area in `output/`:
+Create one `.md` file per functional area in `test-cases/`:
 
 ```
-output/
+test-cases/
 ├── TC-part-creation.md          — Part creation (manual entry and import flows)
 ├── TC-part-detail-views.md      — Part detail view: all tabs listed above
 ├── TC-categories.md             — Part categories: hierarchy, filtering, parametric tables

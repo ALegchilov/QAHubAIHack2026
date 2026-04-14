@@ -5,9 +5,9 @@
   "scripts": {
     "test": "npx playwright test",
     "test:api": "npx playwright test --project=api-tests",
-    "test:api:parts": "npx playwright test tests/api/parts/",
-    "test:api:categories": "npx playwright test tests/api/categories/",
-    "test:api:cross-cutting": "npx playwright test tests/api/cross-cutting/",
+    "test:api:parts": "npx playwright test automation/api/parts/",
+    "test:api:categories": "npx playwright test automation/api/categories/",
+    "test:api:cross-cutting": "npx playwright test automation/api/cross-cutting/",
     "test:report": "npx playwright show-report"
   },
   "devDependencies": {
