@@ -16,10 +16,10 @@
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@fixtures/*": ["tests/api/fixtures/*"],
-      "@helpers/*": ["tests/api/helpers/*"]
+      "@fixtures/*": ["automation/api/fixtures/*"],
+      "@helpers/*": ["automation/api/helpers/*"]
     }
   },
-  "include": ["tests/**/*.ts"],
+  "include": ["automation/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -12,7 +12,7 @@ const AUTH_FILE = path.resolve(__dirname, '.auth/allaccess-state.json');
  * Run with: npx playwright test --config=playwright.ui.config.ts
  */
 export default defineConfig({
-  testDir: './tests/ui',
+  testDir: './automation/ui',
 
   /* Fail the build on CI if test.only is left in source */
   forbidOnly: !!process.env.CI,

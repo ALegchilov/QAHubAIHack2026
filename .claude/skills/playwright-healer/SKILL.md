@@ -153,7 +153,7 @@ For every escalated test, write a detailed escalation block:
 ## Escalated: ATC-CREATE-016
 
 **Test:** ATC-CREATE-016: Create part with initial_stock quantity=0 (no stock added)
-**File:** tests/api/parts/parts-create.spec.ts:666
+**File:** automation/api/parts/parts-create.spec.ts:666
 **Attempts:** 5
 
 ### Timeline of Attempts
